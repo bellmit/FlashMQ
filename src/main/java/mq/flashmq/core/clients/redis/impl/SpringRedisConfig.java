@@ -8,8 +8,9 @@ import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
+import org.springframework.stereotype.Service;
 
-@Configuration
+@Service
 public
 class SpringRedisConfig extends RedisClient {
 
@@ -53,5 +54,6 @@ class SpringRedisConfig extends RedisClient {
         template.setConnectionFactory(jedisConnectionFactory());
         return template;
     }
+
 
 }

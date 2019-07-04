@@ -10,11 +10,11 @@ public class SpringFlashPublisher extends BaseFlashPublisher {
     @Autowired
     private RedisTemplate<String, Packet> template;
 
-    public SpringFlashPublisher(String queue) {
+    public SpringFlashPublisher( String queue )  {
         super(queue);
     }
 
-    public void publishPacket(Packet packet) {
+    public void publishPacket( Packet packet )  {
         template.convertAndSend(getQueue(), packet);
     }
 

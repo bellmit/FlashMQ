@@ -6,7 +6,7 @@ import redis.clients.jedis.Jedis;
 public
 class RedisClient extends BaseRedisClient {
 
-    private Jedis jedisClient;
+    private static Jedis jedisClient;
 
     public RedisClient( String host
                         , int port )  {
@@ -28,4 +28,7 @@ class RedisClient extends BaseRedisClient {
         this.jedisClient.connect();
     }
 
+    public static Jedis getJedisClient() {
+        return jedisClient;
+    }
 }

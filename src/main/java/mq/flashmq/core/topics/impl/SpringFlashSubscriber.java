@@ -37,7 +37,7 @@ class SpringFlashSubscriber<T> extends BaseFlashSubscriber<T> implements Message
             Object object = ois.readObject();
 
             if (!(object instanceof Packet)) {
-                LOG.log(Level.SEVERE, "You can only send object of type Packet", new Exception("Wrong data type provided"));
+                LOG.log(Level.SEVERE, "You can only send object of stype Packet", new Exception("Wrong data type provided"));
                 return;
             }
 

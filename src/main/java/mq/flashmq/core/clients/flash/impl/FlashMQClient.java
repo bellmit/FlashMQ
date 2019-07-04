@@ -5,11 +5,18 @@ import mq.flashmq.core.clients.redis.impl.RedisClient;
 public
 class FlashMQClient extends BaseFlashMQClient {
 
-    public FlashMQClient( RedisClient redisClient )  {
-        super(redisClient);
+    private RedisClient redisClient;
+
+    public FlashMQClient(String host, String password, int port) {
+        super(host, password, port);
+        this.redisClient = new RedisClient(host, port, password);
     }
 
-    public RedisClient getRedisClient(  )  {
-        return ( RedisClient ) super.getRedisClient();
+    public void connect() {
+        this.redisClient.connect();
+    }
+
+    public RedisClient getRedisClient() {
+        return redisClient;
     }
 }
