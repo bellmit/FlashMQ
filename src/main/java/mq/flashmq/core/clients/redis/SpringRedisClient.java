@@ -1,4 +1,19 @@
 package mq.flashmq.core.clients.redis;
 
-public class SpringRedisClient {
+import org.springframework.stereotype.Service;
+
+@Service
+public class SpringRedisClient extends RedisClient {
+
+    public SpringRedisClient( String host
+                            , int port )  {
+        super( host, port );
+    }
+
+    public SpringRedisClient( String host
+                            , int port
+                            , String password )  {
+        super( host, port, null );
+    }
+
 }

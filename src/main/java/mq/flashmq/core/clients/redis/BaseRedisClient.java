@@ -19,23 +19,35 @@ public class BaseRedisClient {
                             , String password ) {
         this.host = host;
         this.port = port;
-        this.jedisClient = new Jedis(this.host, this.port);
+        this.jedisClient = new Jedis( this.host, this.port );
 
-        if (password != null) {
-            this.jedisClient.auth(password);
+        if ( password != null ) {
+            this.jedisClient.auth( password );
         }
     }
 
-    public String getHost(  )   { return host; }
+    public String getHost(  )  {
+        return host;
+    }
 
-    public void setHost( String host )  { this.host = host; }
+    public void setHost( String host )  {
+        this.host = host;
+    }
 
-    public int getPort( )    { return port; }
+    public int getPort(  )  {
+        return port;
+    }
 
-    public void setPort( int port )     { this.port = port; }
+    public void setPort( int port )  {
+        this.port = port;
+    }
 
-    public Jedis getJedisClient(    )  { return jedisClient; }
+    public Jedis getJedisClient(  )  {
+        return jedisClient;
+    }
 
-    public void setJedisClient( Jedis jedisClient )     { this.jedisClient = jedisClient; }
+    public void setJedisClient( Jedis jedisClient )  {
+        this.jedisClient = jedisClient;
+    }
 
 }
