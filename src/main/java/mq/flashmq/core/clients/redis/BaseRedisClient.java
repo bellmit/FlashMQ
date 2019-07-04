@@ -1,13 +1,11 @@
 package mq.flashmq.core.clients.redis;
 
-import redis.clients.jedis.Jedis;
-
-public class BaseRedisClient {
+public
+class BaseRedisClient {
 
     private String host;
+    private String password;
     private int port;
-
-    private Jedis jedisClient;
 
     public BaseRedisClient( String host
                             , int port ) {
@@ -19,11 +17,7 @@ public class BaseRedisClient {
                             , String password ) {
         this.host = host;
         this.port = port;
-        this.jedisClient = new Jedis( this.host, this.port );
-
-        if ( password != null ) {
-            this.jedisClient.auth( password );
-        }
+        this.password = password;
     }
 
     public String getHost(  )  {
@@ -42,12 +36,11 @@ public class BaseRedisClient {
         this.port = port;
     }
 
-    public Jedis getJedisClient(  )  {
-        return jedisClient;
+    public String getPassword(  )  {
+        return this.password;
     }
 
-    public void setJedisClient( Jedis jedisClient )  {
-        this.jedisClient = jedisClient;
+    public void setPassword( String password )  {
+        this.password = password;
     }
-
 }
