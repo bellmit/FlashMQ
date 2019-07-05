@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
 
 import java.io.*;
+import java.util.Base64;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -43,5 +44,11 @@ class Packet<T> implements Serializable {
             LOG.log(Level.SEVERE, "Array converting packet to byte[]", e);
         }
         return new byte[] {  };
+    }
+
+
+    @Override
+    public String toString() {
+        return Base64.getEncoder().encodeToString(this.toByteArray());
     }
 }

@@ -1,11 +1,13 @@
 package mq.flashmq.core.topics;
 
+import redis.clients.jedis.Jedis;
+
 public
 class BaseFlashPublisher {
 
     private String queue;
 
-    public BaseFlashPublisher(String queue )  {
+    public BaseFlashPublisher( String queue)  {
         this.queue = queue;
     }
 
@@ -16,4 +18,5 @@ class BaseFlashPublisher {
     public void setQueue(String queue )  {
         this.queue = queue;
     }
+
 }

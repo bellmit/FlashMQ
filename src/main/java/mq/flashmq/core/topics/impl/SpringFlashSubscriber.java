@@ -9,6 +9,7 @@ import org.springframework.data.redis.connection.MessageListener;
 import org.springframework.data.redis.listener.ChannelTopic;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 import org.springframework.stereotype.Service;
+import redis.clients.jedis.Jedis;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -42,7 +43,7 @@ class SpringFlashSubscriber<T> extends BaseFlashSubscriber<T> implements Message
             }
 
             Packet<T> receivedPacket = ( Packet<T> ) ois.readObject();
-            getQueue().enqueue( receivedPacket );
+            getQueue().enqueue( receivedPacket , false );
         } catch (IOException e) {
             LOG.log( Level.SEVERE, "IOException in SpringFlashSubscriber", e );
         } catch (ClassNotFoundException e) {
