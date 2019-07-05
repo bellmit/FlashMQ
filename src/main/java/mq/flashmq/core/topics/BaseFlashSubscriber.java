@@ -1,13 +1,14 @@
 package mq.flashmq.core.topics;
 
 import mq.flashmq.core.queues.FlashQueue;
+import redis.clients.jedis.Jedis;
 
 public
 class BaseFlashSubscriber<T> {
 
     private FlashQueue<T> queue;
 
-    public BaseFlashSubscriber( FlashQueue<T> queue )  {
+    public BaseFlashSubscriber(FlashQueue<T> queue)  {
         this.queue = queue;
     }
 

@@ -1,22 +1,32 @@
 package mq.flashmq.core.clients.flash.impl;
 import mq.flashmq.core.clients.flash.BaseFlashMQClient;
+import mq.flashmq.core.clients.redis.BaseRedisClient;
 import mq.flashmq.core.clients.redis.impl.RedisClient;
+import redis.clients.jedis.Jedis;
 
 public
 class FlashMQClient extends BaseFlashMQClient {
 
-    private RedisClient redisClient;
+    private static RedisClient redisClient;
 
     public FlashMQClient(String host, String password, int port) {
         super(host, password, port);
-        this.redisClient = new RedisClient(host, port, password);
+        redisClient = new RedisClient(host, port, password);
+    }
+    public FlashMQClient(String host, int port) {
+        super(host, null, port);
+        redisClient = new RedisClient(host, port, null);
     }
 
     public void connect() {
-        this.redisClient.connect();
+        this.redisClient.connectPool();
     }
 
-    public RedisClient getRedisClient() {
+    public Jedis getResource() {
+        return this.redisClient.getResource();
+    }
+
+    public static RedisClient getRedisClient() {
         return redisClient;
     }
 }
