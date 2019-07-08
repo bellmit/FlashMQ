@@ -3,37 +3,39 @@ package mq.flashmq.core.clients.redis.impl;
 import mq.flashmq.core.clients.redis.BaseRedisClient;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.JedisPoolConfig;
 
 public
 class RedisClient extends BaseRedisClient {
 
-    private JedisPool jedisPool;
+    private static JedisPoolConfig CONFIG = new JedisPoolConfig();
+    private static JedisPool POOL = new JedisPool();
 
-    public RedisClient( String host
-                        , int port )  {
-        super( host, port );
+    static {
+        CONFIG.setMaxTotal(30);
     }
 
-    public RedisClient( String host
-                        , int port
-                        , String password )  {
-        super( host, port, password );
+    public RedisClient(String host, int port) {
+        super(host, port);
+        POOL = new JedisPool(CONFIG, host, port);
     }
 
-    public void connectPool(  )  {
-        this.jedisPool = new JedisPool(getHost(), getPort());
+    public RedisClient(String host, int port, String password) {
+        super(host, port, password);
+        POOL = new JedisPool(CONFIG, host, port);
     }
 
-    public Jedis getResource(  )  {
-        Jedis jedisClient = this.jedisPool.getResource();
+    public Jedis getResource() {
 
-        if ( getPassword() != null ) {
-            jedisClient.auth( getPassword() );
+        Jedis resource = POOL.getResource();
+
+        if (getPassword() != null) {
+            resource.auth(getPassword());
         }
-        return jedisClient;
+
+        return resource;
     }
 
-    public JedisPool getJedisPool() {
-        return jedisPool;
-    }
+
+
 }

@@ -1,2 +1,5 @@
 
-}squid:S1450	"ZRemove the "jedisClient" field and declare it as a local variable in the relevant methods.(¦îä–øÿÿÿÿ8ô‰ÖÓ»-
+tsquid:S3008"QRename this field "CONFIG" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(§ôš­şÿÿÿÿ8èÕ‡½-
+msquid:S3008"ORename this field "POOL" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»±Á¢8¹¸Š½-
+?squid:S3010"!Remove this assignment of "POOL".(–ó¸Ã8Ìñ‹½-
+?squid:S3010"!Remove this assignment of "POOL".(–ó¸Ã8Ìñ‹½-

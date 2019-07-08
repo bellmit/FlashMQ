@@ -55,5 +55,4 @@ class SpringRedisConfig extends RedisClient {
         return template;
     }
 
-
 }
