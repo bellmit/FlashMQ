@@ -15,15 +15,7 @@ class FlashMQClient extends BaseFlashMQClient {
     }
     public FlashMQClient(String host, int port) {
         super(host, null, port);
-        redisClient = new RedisClient(host, port, null);
-    }
-
-    public void connect() {
-        this.redisClient.connectPool();
-    }
-
-    public Jedis getResource() {
-        return this.redisClient.getResource();
+        redisClient = new RedisClient(host, port);
     }
 
     public static RedisClient getRedisClient() {

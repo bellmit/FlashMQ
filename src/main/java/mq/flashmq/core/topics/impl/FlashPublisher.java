@@ -1,5 +1,6 @@
 package mq.flashmq.core.topics.impl;
 
+import mq.flashmq.core.ThreadFactory;
 import mq.flashmq.core.clients.flash.impl.FlashMQClient;
 import mq.flashmq.core.clients.redis.impl.RedisClient;
 import mq.flashmq.core.packets.Packet;
@@ -18,25 +19,14 @@ public class FlashPublisher extends BaseFlashPublisher {
 
     private static final Logger LOG = Logger.getLogger(FlashPublisher.class.getName());
 
-    private static final BlockingQueue<Runnable> BLOCKING_QUEUE = new LinkedBlockingQueue<>();
-    private static final ExecutorService EXECUTOR_SERVICE = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, BLOCKING_QUEUE);
-
     public FlashPublisher(String queue) {
         super(queue);
     }
 
     public void publishPacket(Packet packet) {
-        EXECUTOR_SERVICE.execute(() -> {
+        ThreadFactory.getInstance().execute(() -> {
             Jedis jedis = FlashMQClient.getRedisClient().getResource();
-            if (jedis != null) {
-                try {
-                    jedis.publish(nameToByteString(), packet.toString());
-                } catch (Exception e) {
-                    LOG.log(Level.SEVERE,"Error publishing packet", e);
-                } finally {
-                    FlashMQClient.getRedisClient().getJedisPool().returnResource(jedis);
-                }
-            }
+            jedis.publish(getQueue(), packet.toString());
         });
     }
 
@@ -53,10 +43,6 @@ public class FlashPublisher extends BaseFlashPublisher {
             LOG.log(Level.SEVERE, "Array converting packet to byte[]", e);
         }
         return Base64.getEncoder().encodeToString(new byte[]{});
-    }
-
-    public void close() {
-        EXECUTOR_SERVICE.shutdown();
     }
 
 }

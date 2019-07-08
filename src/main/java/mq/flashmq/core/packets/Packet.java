@@ -38,7 +38,6 @@ class Packet<T> implements Serializable {
             ObjectOutputStream outputStream = new ObjectOutputStream(baos);
 
             outputStream.writeObject(this);
-            outputStream.flush();
             return baos.toByteArray();
         } catch (IOException e) {
             LOG.log(Level.SEVERE, "Array converting packet to byte[]", e);
