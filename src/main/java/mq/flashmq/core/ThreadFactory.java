@@ -5,7 +5,7 @@ import java.util.concurrent.Executors;
 
 public class ThreadFactory {
 
-    private static final ExecutorService EXECUTOR_SERVICE = Executors.newCachedThreadPool();
+    private static final ExecutorService EXECUTOR_SERVICE = Executors.newFixedThreadPool(10);
 
     private static ThreadFactory ourInstance = new ThreadFactory();
 
