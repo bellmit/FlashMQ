@@ -9,7 +9,6 @@
 /Users/markvolkov/IdeaProjects/FlashMQ/src/main/java/mq/flashmq/core/simple/SimplePublisher.java
 /Users/markvolkov/IdeaProjects/FlashMQ/src/main/java/mq/flashmq/core/topics/impl/SpringFlashSubscriber.java
 /Users/markvolkov/IdeaProjects/FlashMQ/src/main/java/mq/flashmq/core/packets/Packet.java
-/Users/markvolkov/IdeaProjects/FlashMQ/src/main/java/mq/flashmq/core/Main.java
 /Users/markvolkov/IdeaProjects/FlashMQ/src/main/java/mq/flashmq/core/ThreadFactory.java
 /Users/markvolkov/IdeaProjects/FlashMQ/src/main/java/mq/flashmq/core/clients/flash/BaseFlashMQClient.java
 /Users/markvolkov/IdeaProjects/FlashMQ/src/main/java/mq/flashmq/core/topics/impl/SpringFlashPublisher.java

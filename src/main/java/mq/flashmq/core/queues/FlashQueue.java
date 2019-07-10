@@ -15,7 +15,7 @@ abstract class FlashQueue<T> {
 
     public FlashQueue( String name )  {
         this.name = name;
-        this.queue = new LinkedList<Packet<T>>();
+        this.queue = new LinkedList<>();
     }
 
     public abstract void onReceivedPacket(Packet<T> packet);

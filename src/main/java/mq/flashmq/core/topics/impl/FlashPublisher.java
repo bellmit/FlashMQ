@@ -27,6 +27,10 @@ public class FlashPublisher extends BaseFlashPublisher {
         ThreadFactory.getInstance().execute(() -> {
             Jedis jedis = FlashMQClient.getRedisClient().getResource();
             jedis.publish(getQueue(), packet.toString());
+
+            if (jedis.isConnected()) {
+                jedis.close();
+            }
         });
     }
 
